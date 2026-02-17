@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NETWORC</title>
+  <meta name="description" content="NETWORC — dark electronic with electric guitars. New music coming soon." />
+
+  <!-- Fonts: gothic headline + readable body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #070809;
+      --bg2:#0b0d0f;
+      --ink:#e7e1d7;
+      --muted:#b6afa5;
+      --ember:#d0742d;
+      --ember2:#ffb070;
+      --line: rgba(255,255,255,.08);
+      --card: rgba(10,12,14,.72);
+      --shadow: rgba(0,0,0,.65);
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 700px at 50% 20%, rgba(255,176,112,.06), transparent 60%),
+        radial-gradient(900px 600px at 15% 80%, rgba(208,116,45,.06), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      font-family: "Rajdhani", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      letter-spacing:.2px;
+    }
+
+    /* Subtle film grain (cheap + effective) */
+    body:before{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      background-image:url("assets/grain.png"); /* optional; can remove if you don't add it */
+      opacity:.08;
+      mix-blend-mode:overlay;
+    }
+
+    .wrap{
+      min-height:100%;
+      display:flex;
+      flex-direction:column;
+    }
+
+    /* HERO */
+    .hero{
+      position:relative;
+      border-bottom:1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.65)),
+        url("assets/networc-banner.png") center/cover no-repeat;
+      /* If you don't want to use the banner as background, swap to a plain gradient */
+    }
+
+    .hero-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding: clamp(18px, 3vw, 28px);
+      padding-top: clamp(26px, 4.5vw, 48px);
+      padding-bottom: clamp(18px, 3.5vw, 36px);
+      display:grid;
+      grid-template-columns: 110px 1fr;
+      gap: 18px;
+      align-items:end;
+    }
+
+    .avatar{
+      width:110px; height:110px;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow: 0 18px 50px var(--shadow);
+      background: rgba(0,0,0,.35);
+    }
+    .avatar img{
+      width:100%; height:100%;
+      object-fit:cover;
+      transform:scale(1.02);
+    }
+
+    .titleblock{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .logo{
+      margin:0;
+      font-family: "UnifrakturCook", serif;
+      font-weight:700;
+      font-size: clamp(36px, 6vw, 58px);
+      line-height: .95;
+      letter-spacing: 1px;
+      text-shadow: 0 10px 28px rgba(0,0,0,.75);
+    }
+
+    .tagline{
+      margin:0;
+      color: var(--muted);
+      font-size: clamp(16px, 2.1vw, 20px);
+      font-weight: 500;
+      text-shadow: 0 10px 20px rgba(0,0,0,.65);
+    }
+
+    .pills{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .pill{
+      font-size:13px;
+      color: rgba(231,225,215,.9);
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.35);
+      padding:7px 10px;
+      border-radius:999px;
+      backdrop-filter: blur(6px);
+    }
+    .pill .dot{
+      display:inline-block;
+      width:7px; height:7px;
+      background: linear-gradient(180deg, var(--ember2), var(--ember));
+      border-radius:99px;
+      margin-right:8px;
+      box-shadow: 0 0 18px rgba(208,116,45,.35);
+      vertical-align:middle;
+    }
+
+    /* MAIN */
+    main{
+      flex:1;
+      max-width:1100px;
+      width:100%;
+      margin:0 auto;
+      padding: clamp(18px, 3vw, 28px);
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:16px;
+    }
+
+    .card{
+      border:1px solid var(--line);
+      background: var(--card);
+      border-radius: 18px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.45);
+      overflow:hidden;
+    }
+
+    .card .hd{
+      padding: 16px 16px 0 16px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    .card h2{
+      margin:0;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing:.6px;
+      color: rgba(231,225,215,.95);
+    }
+    .card .bd{
+      padding: 12px 16px 16px 16px;
+      color: rgba(182,175,165,.95);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 12px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 11px 14px;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      text-decoration:none;
+      color: var(--ink);
+      background: rgba(0,0,0,.35);
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      font-weight: 600;
+      letter-spacing:.4px;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,176,112,.35);
+      background: rgba(0,0,0,.5);
+    }
+    .btn.primary{
+      border-color: rgba(208,116,45,.45);
+      background: linear-gradient(180deg, rgba(208,116,45,.22), rgba(0,0,0,.35));
+    }
+    .btn .icon{
+      width:10px; height:10px;
+      border-radius:99px;
+      background: linear-gradient(180deg, var(--ember2), var(--ember));
+      box-shadow: 0 0 18px rgba(208,116,45,.35);
+    }
+
+    .mini{
+      font-size: 14px;
+      color: rgba(182,175,165,.85);
+      border-top:1px solid var(--line);
+      padding-top:12px;
+      margin-top:12px;
+    }
+
+    /* RIGHT COLUMN */
+    .stack{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .email{
+      display:flex;
+      gap:10px;
+      margin-top:10px;
+    }
+    input[type="email"]{
+      flex:1;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.35);
+      color: var(--ink);
+      outline:none;
+    }
+    input[type="email"]::placeholder{ color: rgba(182,175,165,.7); }
+    button{
+      padding: 12px 14px;
+      border-radius: 12px;
+      border:1px solid rgba(208,116,45,.45);
+      background: linear-gradient(180deg, rgba(208,116,45,.22), rgba(0,0,0,.35));
+      color: var(--ink);
+      font-weight: 700;
+      cursor:pointer;
+    }
+    button:hover{ filter:brightness(1.05); }
+
+    footer{
+      border-top:1px solid var(--line);
+      color: rgba(182,175,165,.75);
+      padding: 18px clamp(18px, 3vw, 28px);
+    }
+    .foot-inner{
+      max-width:1100px;
+      margin:0 auto;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      font-size:14px;
+    }
+    .foot-inner a{
+      color: rgba(231,225,215,.85);
+      text-decoration:none;
+      border-bottom: 1px solid transparent;
+    }
+    .foot-inner a:hover{ border-bottom-color: rgba(255,176,112,.35); }
+
+    /* RESPONSIVE */
+    @media (max-width: 880px){
+      main{ grid-template-columns: 1fr; }
+      .hero-inner{ grid-template-columns: 90px 1fr; }
+      .avatar{ width:90px; height:90px; border-radius:16px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="avatar">
+          <!-- Put your orc profile pic here -->
+          <img src="assets/orc-pfp.png" alt="NETWORC Orc" />
+        </div>
+
+        <div class="titleblock">
+          <h1 class="logo">NETWORC</h1>
+          <p class="tagline">Dark electronic • electric guitars • new music incoming</p>
+
+          <div class="pills" aria-label="Style tags">
+            <span class="pill"><span class="dot"></span>Ableton</span>
+            <span class="pill"><span class="dot"></span>Synth + Guitar</span>
+            <span class="pill"><span class="dot"></span>Heavy Atmosphere</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="card">
+        <div class="hd">
+          <h2>Coming soon</h2>
+        </div>
+        <div class="bd">
+          <p style="margin:0;">
+            networc.fm is the home base. Links will go live as soon as the first release drops.
+          </p>
+
+          <div class="actions" role="navigation" aria-label="Primary links">
+            <!-- Replace # with your real links when ready -->
+            <a class="btn primary" href="#" target="_blank" rel="noreferrer">
+              <span class="icon"></span> Spotify
+            </a>
+            <a class="btn" href="#" target="_blank" rel="noreferrer">
+              <span class="icon"></span> SoundCloud
+            </a>
+            <a class="btn" href="#" target="_blank" rel="noreferrer">
+              <span class="icon"></span> YouTube
+            </a>
+            <a class="btn" href="#" target="_blank" rel="noreferrer">
+              <span class="icon"></span> X
+            </a>
+          </div>
+
+          <div class="mini">
+            Tip: once you have a Spotify artist link, this page can just redirect there—or keep this as your “lore / release hub.”
+          </div>
+        </div>
+      </section>
+
+      <aside class="stack">
+        <section class="card">
+          <div class="hd">
+            <h2>Notify me</h2>
+          </div>
+          <div class="bd">
+            <p style="margin:0;">Drop your email and I’ll send one message when the first track is out.</p>
+
+            <!-- Static placeholder form (no backend yet) -->
+            <form class="email" onsubmit="event.preventDefault(); alert('Saved (placeholder). Hook up your email provider later.');">
+              <input type="email" placeholder="you@example.com" required />
+              <button type="submit">Join</button>
+            </form>
+
+            <p class="mini" style="margin-bottom:0;">
+              No spam. No weekly newsletter. One ping.
+            </p>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="hd">
+            <h2>Press kit</h2>
+          </div>
+          <div class="bd">
+            <p style="margin:0;">
+              Placeholder until you’re ready: artwork, logos, and a short bio will live here.
+            </p>
+            <div class="actions">
+              <a class="btn" href="#" onclick="return false;">
+                <span class="icon"></span> Download (soon)
+              </a>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <footer>
+      <div class="foot-inner">
+        <div>© <span id="y"></span> NETWORC</div>
+        <div>
+          <a href="mailto:hello@networc.fm">hello@networc.fm</a>
+          &nbsp;·&nbsp;
+          <a href="#" onclick="return false;">Privacy</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
